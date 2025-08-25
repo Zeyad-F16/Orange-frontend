@@ -1,0 +1,167 @@
+.dashboard-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.dashboard-header h1 {
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filters input, .filters select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #ccc;
+  transition: transform 0.2s;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.task-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.task-status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.task-description {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.task-due-date {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.status-todo { border-color: #f39c12; } /* Orange */
+.status-todo .task-status { background-color: #f39c12; }
+
+.status-in_progress { border-color: #3498db; } /* Blue */
+.status-in_progress .task-status { background-color: #3498db; }
+
+.status-completed { border-color: #2ecc71; } /* Green */
+.status-completed .task-status { background-color: #2ecc71; }
+
+.no-tasks {
+  text-align: center;
+  color: #777;
+  font-size: 1.2rem;
+  grid-column: 1 / -1;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 450px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+
+.btn {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: #fff;
+}
+.btn-primary { background-color: #667eea; }
+.btn-primary:hover { background-color: #5646d4; }
+.btn-secondary { background-color: #777; }
+.btn-secondary:hover { background-color: #555; }
+.btn-danger { background-color: #e74c3c; }
+.btn-danger:hover { background-color: #c0392b; }
+.btn-logout { background-color: #95a5a6; }
+.btn-logout:hover { background-color: #7f8c8d; }
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 12px;
+}

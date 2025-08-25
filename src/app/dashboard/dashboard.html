@@ -1,0 +1,67 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Task Dashboard</h1>
+    <button (click)="logout()" class="btn btn-logout">Logout</button>
+  </header>
+
+  <div class="controls">
+    <button (click)="showCreateForm()" class="btn btn-primary">Add New Task</button>
+    <div class="filters">
+      <input type="text" placeholder="Search by title..." [(ngModel)]="Title" (ngModelChange)="applyFilters()">
+      <select [(ngModel)]="filterStatus" (ngModelChange)="applyFilters()">
+        <option value="ALL">All Statuses</option>
+        <option value="TODO">To-Do</option>
+        <option value="IN_PROGRESS">In Progress</option>
+        <option value="COMPLETED">Completed</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="isFormVisible">
+    <div class="modal-content">
+      <h2>{{ isEditing ? 'Edit Task' : 'Create Task' }}</h2>
+      <form (ngSubmit)="saveTask()">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" [(ngModel)]="taskData.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" [(ngModel)]="taskData.description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" [(ngModel)]="taskData.status" name="status">
+            <option value="TODO">To-Do</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dueDate">Due Date</label>
+          <input type="date" id="dueDate" [(ngModel)]="taskData.dueDate" name="dueDate" required>
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Create' }}</button>
+          <button type="button" (click)="hideForm()" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="task-list">
+    <div class="task-card" *ngFor="let task of filteredTasks" [ngClass]="'status-' + task.status.toLowerCase()">
+      <div class="task-header">
+        <h3>{{ task.title }}</h3>
+        <span class="task-status">{{ task.status.replace('_', ' ') }}</span>
+      </div>
+      <p class="task-description">{{ task.description }}</p>
+      <p class="task-due-date">Due: {{ task.dueDate | date: 'mediumDate' }}</p>
+      <div class="task-actions">
+        <button (click)="showEditForm(task)" class="btn btn-sm btn-secondary">Edit</button>
+        <button (click)="deleteTask(task.id)" class="btn btn-sm btn-danger">Delete</button>
+      </div>
+    </div>
+    <p *ngIf="filteredTasks.length === 0" class="no-tasks">No tasks found.</p>
+  </div>
+</div>
